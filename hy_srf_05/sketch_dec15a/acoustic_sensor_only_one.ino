@@ -1,5 +1,5 @@
 long duration;
-    float distance;
+    int distance;
     
     const int trig = 13;
     const int echo = 12;
@@ -15,11 +15,10 @@ long duration;
 Serial.println(distance); 
 
     }
-    float calculateDistance(){ 
+    int calculateDistance(){ 
   
   digitalWrite(trig, LOW); 
   delay(200);
-  // Sets the trigPin on HIGH state for 10 micro seconds
   digitalWrite(trig, HIGH); 
   delay(1000);
   digitalWrite(trig, LOW);
