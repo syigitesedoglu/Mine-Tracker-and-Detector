@@ -13,12 +13,12 @@ long duration;
     void loop() {
       int distance = calculateDistance(); // Replace with your sensor reading function
 
-if (distance < 2) {
+if (distance < 5) {
   // Object is very close! Take immediate action.
   Serial.println(distance);
   Serial.println("Object detected! Very close (less than 2 cm).");
   // Your immediate action code here (e.g., activate alarm, stop motor)
-} else if (distance >= 2 && distance <= 10) {
+} else if (distance >= 5 && distance <= 10) {
   // Object is close. Take caution.
   Serial.println(distance);
   Serial.println("Object detected! Close (2 cm to 10 cm)."); 
@@ -48,7 +48,6 @@ if (distance < 2) {
   
   digitalWrite(trig, LOW); 
   delay(200);
-  // Sets the trigPin on HIGH state for 10 micro seconds
   digitalWrite(trig, HIGH); 
   delay(1000);
   digitalWrite(trig, LOW);
