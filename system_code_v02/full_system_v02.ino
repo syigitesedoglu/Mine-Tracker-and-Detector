@@ -126,7 +126,7 @@ void setup(void) {
 void loop() {
   
   analogWrite(9, 100); //ENA   pin
-  analogWrite(10, 200); //ENB pin
+  analogWrite(10, 100); //ENB pin
   //(Optional)
   
   digitalWrite(motor1pin1,   HIGH);
