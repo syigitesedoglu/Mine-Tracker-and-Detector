@@ -5,3 +5,4 @@
     - Jumper Cable
     - Battery
     - Maybe Arduino Uno
+    - OV7670 Camera
