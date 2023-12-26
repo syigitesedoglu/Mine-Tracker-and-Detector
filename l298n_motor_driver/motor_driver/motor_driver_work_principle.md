@@ -25,11 +25,11 @@
 
 * But perimeter is Pi times the Diameter of wheel
 
-* So Speed = $PI*D * speed of wheel$
+* So Speed = $π*D * speed of wheel$
 
-* $Speed(m/s) = Pi * D(in meter) * rps$
+* $Speed(m/s) = π * D(in meter) * rps$
 
-* $Speed(km/hr) = Pi*D(in kilo meter) * rpm * 60$
+* $Speed(km/hr) = π*D(in kilo meter) * rpm * 60$
 
 
 
