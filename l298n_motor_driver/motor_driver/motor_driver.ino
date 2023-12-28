@@ -2,7 +2,7 @@ int motor1pin1 = 2;
 int motor1pin2 = 3;
 
 int motor2pin1 = 4;
-int   motor2pin2 = 5;
+int motor2pin2 = 5;
 
 void setup() {
   // put your setup code here, to run once:
@@ -31,12 +31,13 @@ void loop() {
 
   digitalWrite(motor2pin1, HIGH);
    digitalWrite(motor2pin2, LOW);
-  delay(3000);
+  delay(1000);
 
-  digitalWrite(motor1pin1,   LOW);
-  digitalWrite(motor1pin2, HIGH);
+  //This Part is used to reverse the running wheel.
+  //digitalWrite(motor1pin1,   LOW);
+  //digitalWrite(motor1pin2, HIGH);
 
-  digitalWrite(motor2pin1, LOW);
-   digitalWrite(motor2pin2, HIGH);
-  delay(3000);
+  //digitalWrite(motor2pin1, LOW);
+   //digitalWrite(motor2pin2, HIGH);
+  //delay(3000);
 }
