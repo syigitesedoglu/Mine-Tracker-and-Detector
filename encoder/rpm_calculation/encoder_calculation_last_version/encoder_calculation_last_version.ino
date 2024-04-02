@@ -8,7 +8,7 @@ const float diskslots = 20.0;
 volatile float revolution1, revolution2;
 unsigned long timeold = 0; // Initialize timeold
 
-const float wheeldiameter = 7.00; // Changed to float
+const float wheelDiameterCM = 7.0; // Measured wheel diameter in centimeters (assuming you measured in cm)
 
 int enA = 11;
 int in1 = 9;
@@ -47,61 +47,76 @@ void ISR_timerone()
   float elapsedTime = (millis() - timeold) / 1000.0; // Calculate elapsed time in seconds
   timeold = millis(); // Update timeold
   Serial.print("Elapsed time: ");
-  Serial.println(elapsedTime * 1.28205128);
+  Serial.println(elapsedTime * 1.38888889);
   
-  float rps1 = (counter1 / 60) / (elapsedTime * 1.28205128);
-  float rps2 = (counter2 / 60) / (elapsedTime * 1.28205128);
+  float rps1 = (counter1 / 60) / (elapsedTime * 1.38888889);
+  float rps2 = (counter2 / 60) / (elapsedTime * 1.38888889);
   Serial.print("Motor 1 RPS: ");
   Serial.println(rps1);
   Serial.print("Motor 2 RPS: ");
   Serial.println(rps2);
   
   float distance1, distance2; // Declare distance variables
+  float distanceFactor = wheelDiameterCM / 100.0; // Convert diameter cm to meters
 
   if (isForward) { // If the direction is forward
-    distance1 = rps1 * (3.14159 * wheeldiameter); // Calculate forward distance
-    distance2 = rps2 * (3.14159 * wheeldiameter);
-    Serial.println("Motor 1 Direction: Forward");
-    Serial.println("Motor 2 Direction: Forward");
+  distance1 = (rps1 * 3.14159 * distanceFactor)*4.32; // Calculate forward distance
+  distance2 = (rps2 * 3.14159 * distanceFactor)*4.32;
+  Serial.println("Motor 1 Direction: Forward");
+  Serial.println("Motor 2 Direction: Forward");
   } else { // If the direction is backward
-    distance1 = -rps1 * (3.14159 * wheeldiameter); // Calculate backward distance
-    distance2 = -rps2 * (3.14159 * wheeldiameter);
-    Serial.println("Motor 1 Direction: Backward");
-    Serial.println("Motor 2 Direction: Backward");
+  distance1 = (-rps1 * 3.14159 * distanceFactor)*4.32; // Calculate backward distance
+  distance2 = (-rps2 * 3.14159 * distanceFactor)*4.32;
+  Serial.println("Motor 1 Direction: Backward");
+  Serial.println("Motor 2 Direction: Backward");
   }
-  
-  Serial.print("Motor 1 Distance: ");
-  Serial.println(distance1 / 100);
-  Serial.print("Motor 2 Distance: ");
-  Serial.println(distance2 / 100);
+
+
+Serial.print("Motor 1 Distance: ");
+Serial.println(distance1); // Divided by 100 to convert to meters
+Serial.print("Motor 2 Distance: ");
+Serial.println(distance2); // Divided by 100 to convert to meters
+
 
   float velocity1, velocity2; // Declare velocity variables
 
   if (isForward) { // If the direction is forward
-    velocity1 = distance1 / (elapsedTime * 1.28205128); // Calculate forward velocity
-    velocity2 = distance2 / (elapsedTime * 1.28205128);
+    velocity1 = distance1 / (elapsedTime * 1.38888889); // Calculate forward velocity
+    velocity2 = distance2 / (elapsedTime * 1.38888889);
   } else { // If the direction is backward
-    velocity1 = -distance1 / (elapsedTime * 1.28205128); // Calculate backward velocity
-    velocity2 = -distance2 / (elapsedTime * 1.28205128);
+    velocity1 = -distance1 / (elapsedTime * 1.38888889); // Calculate backward velocity
+    velocity2 = -distance2 / (elapsedTime * 1.38888889);
   }
 
   prev_distance1 = distance1; // Update previous distance for next iteration
   prev_distance2 = distance2;
   Serial.print("Motor 1 Velocity: ");
-  Serial.println(velocity1 / 100);
+  Serial.println(velocity1);
   Serial.print("Motor 2 Velocity: ");
-  Serial.println(velocity2 / 100);
+  Serial.println(velocity2);
 
-  float acceleration1 = (velocity1 - revolution1) / (elapsedTime * 1.28205128); // Calculate acceleration
-  float acceleration2 = (velocity2 - revolution2) / (elapsedTime * 1.28205128);
-  revolution1 = velocity1; // Update revolutions for next iteration
-  revolution2 = velocity2;
+  float acceleration1 = (velocity1 - revolution1) / (elapsedTime * 1.38888889); // Calculate acceleration
+  float acceleration2 = (velocity2 - revolution2) / (elapsedTime * 1.38888889);
+  velocity1 = revolution1;
+  velocity2 = revolution2;
   Serial.print("Motor 1 Acceleration: ");
-  Serial.println(acceleration1);
+  Serial.println(acceleration1*100);
   Serial.print("Motor 2 Acceleration: ");
-  Serial.println(acceleration2);
+  Serial.println(acceleration2*100);
   
   Serial.print("\n");
+  
+  
+//  float acceleration1 = (velocity1 - 100.0) / (elapsedTime * 1.38888889); // Calculate acceleration
+//  float acceleration2 = (velocity2 - 100.0) / (elapsedTime * 1.38888889);
+//  revolution1 = velocity1; // Update revolutions for next iteration
+//  revolution2 = velocity2;
+//  Serial.print("Motor 1 Acceleration: ");
+//  Serial.println(acceleration1);
+//  Serial.print("Motor 2 Acceleration: ");
+//  Serial.println(acceleration2);
+//  
+//  Serial.print("\n");
 
 //   float acceleration1, acceleration2; // Declare acceleration variables
 //
@@ -153,10 +168,10 @@ void loop()
 {
   // Moving Forward
   analogWrite(5, 101.5);
-  analogWrite(11, 100);
+  analogWrite(11, 98);
   digitalWrite(in2, HIGH);
   digitalWrite(in3, HIGH);
-  delay(6000);
+  delay(3000);
   
 
   // Stop the motor
@@ -171,13 +186,16 @@ void loop()
   Serial.println("Motor 2 Direction: Backward");
   Serial.println();
   
-  // Moving backward
+    // Moving backward
   analogWrite(5, 101.5);
-  analogWrite(11, 100);
+  analogWrite(11, 98);
   digitalWrite(in1, HIGH);
   digitalWrite(in4, HIGH);
-  delay(6000);
-  
+  delay(3000);
+  isForward = true; // Set the direction as forward
+  Serial.println("Motor 1 Direction: Forward");
+  Serial.println("Motor 2 Direction: Forward");
+  Serial.println();
 
   // Stop the motor
   analogWrite(5, 0);
@@ -185,8 +203,5 @@ void loop()
   digitalWrite(in1, LOW);
   digitalWrite(in4, LOW);
   delay(1000);
-  isForward = true; // Set the direction as forward
-  Serial.println("Motor 1 Direction: Forward");
-  Serial.println("Motor 2 Direction: Forward");
-  Serial.println();
+  
 }
