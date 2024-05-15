@@ -3,8 +3,8 @@
 #include <SPI.h>
 #include <SD.h>
 
-#define MPU6050_ADDR 0x68 // MPU6050'nin I2C adresi
-#define PIN_SPI_CS 4       // Micro SD kartın Chip Select pini
+#define MPU6050_ADDR 0x68 // MPU6050s I2C address
+#define PIN_SPI_CS 4       // Micro SD CARD Chip Select pin
 
 MPU6050 mpu;
 
@@ -30,10 +30,10 @@ void loop() {
   // Düzeltme faktörü (kullanılan ivme aralığına bağlı olarak)
   float acc_factor = 9.81 / 4096; // ±8g için
   
-  // Gerçek ivme değerini hesapla (m/s^2 cinsinden)
+  // Calculate the real acceleration value (m/s^2)
   float acc_z = az * acc_factor;
   
-  // Sonucu seri monitöre yazdır
+  // Print the result in serial monitor
   Serial.print("Acceleration Z: ");
   Serial.print(acc_z);
   Serial.println(" m/s^2");
@@ -45,8 +45,8 @@ void loop() {
 
     dataFile.close();
   } else {
-    Serial.println("Dosya açılamadı!");
+    Serial.println("FILE CANNOT OPEN!");
   }
   
-  delay(100); // 100ms bekleyerek döngüyü tekrarla
+  delay(100); // after the 100ms repeat the loop
 }
