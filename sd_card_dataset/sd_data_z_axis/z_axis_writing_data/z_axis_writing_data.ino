@@ -19,7 +19,7 @@ void setup() {
     return;
   }
   Serial.println("SD CARD IS WORKING");
-  mpu.setFullScaleAccelRange(8);
+  mpu.setFullScaleAccelRange(8); //for ±8g
 }
 
 void loop() {
@@ -41,7 +41,7 @@ void loop() {
   File dataFile = SD.open("data.txt", FILE_WRITE);
   if (dataFile) {
     dataFile.print("Acceleration: ");
-    dataFile.println(az);
+    dataFile.println(acc_z);
 
     dataFile.close();
   } else {
