@@ -35,7 +35,7 @@ void loop() {
 
   if(acc_z >=45.80){
     acc_z = 45.70;
-{
+  {
     
   
   // Print the result in serial monitor
