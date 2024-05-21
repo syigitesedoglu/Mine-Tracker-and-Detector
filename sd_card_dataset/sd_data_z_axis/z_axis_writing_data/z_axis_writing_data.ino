@@ -32,6 +32,11 @@ void loop() {
   
   // Calculate the real acceleration value (m/s^2)
   float acc_z = az * acc_factor;
+
+  if(acc_z >=45.80){
+    acc_z = 45.70;
+{
+    
   
   // Print the result in serial monitor
   Serial.print("Acceleration Z: ");
