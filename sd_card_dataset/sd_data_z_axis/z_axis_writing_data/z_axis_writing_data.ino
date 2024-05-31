@@ -32,7 +32,7 @@ void loop() {
   
   // Calculate the real acceleration value (m/s^2)
   float acc_z = az * acc_factor;
-
+  float acc_x = ax * acc_factor;
   if(acc_z >=45.80){
     acc_z = 45.70;
   {
@@ -41,6 +41,9 @@ void loop() {
   // Print the result in serial monitor
   Serial.print("Acceleration Z: ");
   Serial.print(acc_z);
+  Serial.println(" m/s^2");
+  Serial.print("Acceleration X: ");
+  Serial.print(acc_x);
   Serial.println(" m/s^2");
 
   File dataFile = SD.open("data.txt", FILE_WRITE);
