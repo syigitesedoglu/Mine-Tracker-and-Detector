@@ -19,7 +19,7 @@ void setup() {
     return;
   }
   Serial.println("SD CARD IS WORKING");
-  mpu.setFullScaleAccelRange(8); //for ±8g
+  mpu.setFullScaleAccelRange(2); //for ±2g
 }
 
 void loop() {
@@ -28,7 +28,7 @@ void loop() {
   mpu.getAcceleration(&ax, &ay, &az);
   
   // Düzeltme faktörü (kullanılan ivme aralığına bağlı olarak)
-  float acc_factor = 9.81 / 4096; // ±8g için
+  float acc_factor = 9.81 / 16384; // ±2g için
   
   // Calculate the real acceleration value (m/s^2)
   float acc_z = az * acc_factor;
