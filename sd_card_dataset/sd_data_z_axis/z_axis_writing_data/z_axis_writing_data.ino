@@ -30,10 +30,10 @@ void loop() {
   // Correction factor for ±2g
   float acc_factor = 9.81 / 16384;
 
-  // Calculate the real acceleration value (m/s^2)
+  // Calculate the real acceleration value (m/s^2) and calibration part. 
   float acc_z = ((az * acc_factor) / 14.814) - 0.015;
 
-  // Constrain the acceleration value to be within the range [0.64, 0.70] using if statements
+  // Constrain the acceleration value to be within the range [0.64, 0.70] using if statements.
   if (acc_z < 0.67) {
     acc_z = 0.67;
   } else if (acc_z > 0.70) {
