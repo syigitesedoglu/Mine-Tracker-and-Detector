@@ -6,7 +6,7 @@
 #define PIN_SPI_CS 4
 MPU6050 mpu;
 
-int direction = 1; // Başlangıçta ileri yön (+1)
+int direction = 1; // Initially forward direction (+1)
 
 void setup() {
   Serial.begin(9600);
@@ -31,8 +31,8 @@ void loop() {
   int16_t ax, ay, az;
   mpu.getAcceleration(&ax, &ay, &az);
   
-  // Düzeltme faktörü (kullanılan ivme aralığına bağlı olarak)
-  float acc_factor = 9.81 / 16384; // ±2g için
+  // Correction factor (depending on the used acceleration range)
+  float acc_factor = 9.81 / 16384; // for ±2g
   
   // Calculate the real acceleration value (m/s^2)
   float acc_z = ((az * acc_factor) / 14.814) - 0.015;
@@ -40,13 +40,13 @@ void loop() {
   static unsigned long lastSwitchTime = 0;
   unsigned long currentTime = millis();
 
-  // Her 2 saniyede bir yön değiştir
-  if (currentTime - lastSwitchTime >= 2000) {  // 2000 ms = 2 saniye
-    direction = -direction;  // Yönü değiştir (+1 <-> -1)
-    lastSwitchTime = currentTime;  // Son yön değiştirme zamanını güncelle
+  // Change direction every 2 seconds
+  if (currentTime - lastSwitchTime >= 2000) {  // 2000 ms = 2 seconds
+    direction = -direction;  // Change direction (+1 <-> -1)
+    lastSwitchTime = currentTime;  // Update the last direction change time
   }
 
-  // Yön değişikliğine göre acc_z değerini güncelle
+  // Update acc_z value according to the direction change
   float adjusted_acc_z = acc_z * direction;
 
   // Print the adjusted acceleration value
