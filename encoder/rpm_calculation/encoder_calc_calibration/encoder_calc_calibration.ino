@@ -151,11 +151,4 @@ void setup()
   timeold = millis();
 } 
 
-void loop()
-{
-  moveMotorForward(100); // Move forward 1 meter
-  delay(2000); // Pause for 2 seconds
-  
-  moveMotorBackward(100); // Move backward 1 meter
-  delay(2000); // Pause for 2 seconds
-}
+
