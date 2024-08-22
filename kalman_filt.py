@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun 14 03:36:03 2024
-
-@author: Kardelen Demirel
-"""
-
 import numpy as np
 
 # Read acceleration data from text file (assuming MPU6050 provides acceleration data directly)
