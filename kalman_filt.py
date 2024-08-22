@@ -1,3 +1,5 @@
+# After taking the acceleration values with using the MPU6050 and SD Card, the kalman filter was used for the 
+
 import numpy as np
 
 # Read acceleration data from text file (assuming MPU6050 provides acceleration data directly)
