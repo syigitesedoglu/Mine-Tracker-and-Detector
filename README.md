@@ -7,3 +7,5 @@
 * Test setup contains a robotic system equipped with an L298N H-Bridge motor driver to control two DC motors,  MPU6050 IMU sensor is used for acceleration data collection and two Arduino systems: Arduino Nano and Uno to process signals. By taking the noise covariance into account, Kalman filter estimation performance was improved and acceleration estimation of  a=0.675 m/s2 was obtained within a range of 0.675±0.002.
  
 * The results show that the acceleration estimation of the mechanism during 1-meter movement using the Kalman filter is obtained within a reasonable error range. In the final phase of the project, a precise real-time positioning system will be completed to accurately determine the position of the mine detector. This prototype system can serve as a reliable testbed for IMU-based positioning projects for undergraduate students.
+
+* With the contribution of Dear Prof. Dr. Mehmet Sezgin.
