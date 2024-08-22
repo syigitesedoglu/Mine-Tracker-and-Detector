@@ -1,4 +1,5 @@
-# After taking the acceleration values with using the MPU6050 and SD Card, the kalman filter was used for the 
+# After taking the acceleration values with using the MPU6050 and SD Card, MPU6050 IMU sensor is used for acceleration data collection and two Arduino systems: Arduino Nano and Uno to process signals. By taking the noise covariance into account, 
+# Kalman filter estimation performance was improved and acceleration estimation of a=0.675 m/s2 was obtained within a range of 0.675±0.002.
 
 import numpy as np
 
