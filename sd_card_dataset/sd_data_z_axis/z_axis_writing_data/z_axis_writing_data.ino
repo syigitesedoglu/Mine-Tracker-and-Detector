@@ -1,4 +1,4 @@
-//This is the main code of the taking the datas with using the MPU6050 accelerometer.
+//This is the main code of the taking the datas with using the MPU6050 accelerometer and SD Card sensor.
 #include <Wire.h>
 #include <MPU6050.h>
 #include <SPI.h>
