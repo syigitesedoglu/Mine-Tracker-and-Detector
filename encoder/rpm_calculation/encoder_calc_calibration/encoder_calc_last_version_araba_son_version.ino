@@ -107,42 +107,6 @@ Serial.println(distance2); // Divided by 100 to convert to meters
   Serial.print("\n");
   
   
-//  float acceleration1 = (velocity1 - 100.0) / (elapsedTime * 1.38888889); // Calculate acceleration
-//  float acceleration2 = (velocity2 - 100.0) / (elapsedTime * 1.38888889);
-//  revolution1 = velocity1; // Update revolutions for next iteration
-//  revolution2 = velocity2;
-//  Serial.print("Motor 1 Acceleration: ");
-//  Serial.println(acceleration1);
-//  Serial.print("Motor 2 Acceleration: ");
-//  Serial.println(acceleration2);
-//  
-//  Serial.print("\n");
-
-//   float acceleration1, acceleration2; // Declare acceleration variables
-//
-//  if (isForward) { // If the direction is forward
-//    acceleration1 = (velocity1 - revolution1) / (elapsedTime * 1.28205128); // Calculate forward acceleration
-//    acceleration2 = (velocity2 - revolution2) / (elapsedTime * 1.28205128);
-//  } else { // If the direction is backward
-//    acceleration1 = (velocity1 - revolution1) / (elapsedTime * 1.28205128); // Calculate backward acceleration
-//    acceleration2 = (velocity2 - revolution2) / (elapsedTime * 1.28205128);
-//  }
-//
-//  revolution1 = velocity1; // Update revolutions for next iteration
-//  revolution2 = velocity2;
-//  Serial.print("Motor 1 Acceleration: ");
-//  Serial.println(acceleration1);
-//  Serial.print("Motor 2 Acceleration: ");
-//  Serial.println(acceleration2);
-//  
-//  Serial.print("\n");
-
-
-//  if (!isForward) { // If the direction is not forward
-//    Serial.println("Motor 1 Direction: Backward");
-//    Serial.println("Motor 2 Direction: Backward");
-//  }
-  
   counter1 = 0;
   counter2 = 0;
   Timer1.attachInterrupt(ISR_timerone);
